@@ -8,7 +8,31 @@ public class Calculator {
     int firstInputValue = scanner.nextInt(); 
     System.out.print("Enter second number- "); 
     int secondInputValue = scanner.nextInt();
-    int result = firstInputValue + secondInputValue;
+    System.out.print("Enter an operator: +, -, * or / ");
+    String operatorString = scanner.next();
+    char operator = operatorString.charAt(0);
+    double result = 0;
+    if (operator == '+')
+    {
+      result = (double)firstInputValue + secondInputValue;
+    }
+    else if (operator == '-')
+    {
+      result = (double)firstInputValue - secondInputValue;
+    }
+    else if (operator == '*')
+    {
+      result = (double)firstInputValue * secondInputValue;
+    }
+    else if (operator == '/')
+    {
+      result = (double)firstInputValue / secondInputValue;;
+    }
+    else
+    {
+        System.out.print("You entered an invalid operator, only + - / * are supported");
+    }
+
     System.out.print("Result:" + result);
   }
 }
