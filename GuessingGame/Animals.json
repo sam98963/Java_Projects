@@ -1,0 +1,8 @@
+{
+  "animals": [
+    {"name":"giraffe", "hint1": "This animal is herbivorous.\n", "hint2": "This animal has a very long neck.\n"},
+    {"name":"ant", "hint1": "This animal is very strong for its size.\n", "hint2": "This animal has 6 legs and can be asexual.\n"},
+    {"name":"cat", "hint1": "This animal is a great pet.\n", "hint2": "This animal supposedly has 9 lives.\n"},
+    {"name":"bat", "hint1": "This animal is nocturnal.\n", "hint2": "This animal uses echolocation to see.\n"}
+  ]
+}
