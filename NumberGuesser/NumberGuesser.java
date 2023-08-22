@@ -39,4 +39,17 @@ public class NumberGuesser {
     this.guess = this.scanner.nextInt();
     this.attempts++;
   }
+
+  public void validateOutOfGuesses(){
+    if (this.outOfGuesses)
+      {
+          System.out.print("\nYou Lose!");
+      }
+    else
+      {
+          System.out.print("\n\nYou Win!");
+      }
+  }
+
+
 }
