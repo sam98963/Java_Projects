@@ -1,4 +1,4 @@
-package Java_Projects.GuessingGame;
+package GuessingGame;
 import java.util.*;
 
 public class GuessingGame{

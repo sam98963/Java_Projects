@@ -1,4 +1,4 @@
-package Java_Projects.Calculator;
+package Calculator;
 import java.util.*;  
 
 public class Calculator {
