@@ -31,9 +31,9 @@ public class NumberGuesser {
   }
 
   public void getUsernameInput(){
-    System.out.print("Hello player, what is your name?\n\n");  
+    System.out.print(ANSI_PURPLE + "Hello player, what is your name?\n\n" + ANSI_RESET);  
     this.username = this.scanner.next();
-    System.out.print("\nHello, " + this.username + ". \n\nLets play a game.\n\n");
+    System.out.print(ANSI_CYAN + "\nHello, " + ANSI_YELLOW + this.username +   "." + ANSI_CYAN + "\n\nLets play a game.\n\n" + ANSI_RESET);
   }
 
   public void generateRandomNumber(){
@@ -49,27 +49,27 @@ public class NumberGuesser {
   }
 
   public void getUserGuess(){
-    System.out.print("Guess a number between 1 and 10!\n\n");
+    System.out.print(ANSI_PURPLE + "Guess a number between 1 and 10!\n\n" + ANSI_RESET);
     this.guess = this.scanner.nextInt();
     this.attempts++;
     validateNumberOfGuesses();
   }
 
-  public void validateOutOfGuesses(){
+  public void validateGameResult(){
     if (this.outOfGuesses)
       {
-          System.out.print("\nYou Lose!");
+          System.out.print(ANSI_RED_BOLD + "\nYou Lose!");
       }
     else
       {
-          System.out.print("\n\nYou Win!");
+          System.out.print(ANSI_GREEN_BOLD + "\n\nYou Win!");
       }
   }
 
   public void getUserGuessWhileIncorrectAndWithinLimit(){
     while(!this.outOfGuesses && this.guess!=this.answer){
       if(this.attempts > 0){
-        System.out.print("\nWrong guess, try again.\n\n");
+        System.out.print(ANSI_RED + "\nWrong guess, try again.\n\n" + ANSI_RESET);
       }
       getUserGuess();
     }
@@ -79,7 +79,7 @@ public class NumberGuesser {
     getUsernameInput();
     generateRandomNumber();
     getUserGuessWhileIncorrectAndWithinLimit();
-    validateOutOfGuesses();
+    validateGameResult();
   }
 
   public static void main(String[] args) {
