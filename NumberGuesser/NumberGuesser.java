@@ -33,4 +33,10 @@ public class NumberGuesser {
     // we want guesses between 1-10
     this.answer = randomNumber + 1;
   }
+
+  public void getUserGuess(){
+    System.out.print("Guess a number between 1 and 10!\n\n");
+    this.guess = this.scanner.nextInt();
+    this.attempts++;
+  }
 }
