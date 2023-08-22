@@ -34,10 +34,16 @@ public class NumberGuesser {
     this.answer = randomNumber + 1;
   }
 
+  public void validateNumberOfGuesses(){
+    if(this.attempts > 2)
+    this.outOfGuesses = true;
+  }
+
   public void getUserGuess(){
     System.out.print("Guess a number between 1 and 10!\n\n");
     this.guess = this.scanner.nextInt();
     this.attempts++;
+    validateNumberOfGuesses();
   }
 
   public void validateOutOfGuesses(){
@@ -51,5 +57,24 @@ public class NumberGuesser {
       }
   }
 
+  public void getUserGuessWhileIncorrectAndWithinLimit(){
+    while(!this.outOfGuesses && this.guess!=this.answer){
+      if(this.attempts > 0){
+        System.out.print("\nWrong guess, try again.\n\n");
+      }
+      getUserGuess();
+    }
+  }
 
+  public void game(){
+    getUsernameInput();
+    generateRandomNumber();
+    getUserGuessWhileIncorrectAndWithinLimit();
+    validateOutOfGuesses();
+  }
+
+  public static void main(String[] args) {
+    NumberGuesser numberGuesser = new NumberGuesser();
+    numberGuesser.game();
+  }
 }
