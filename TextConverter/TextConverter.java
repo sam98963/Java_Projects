@@ -26,8 +26,19 @@ public class TextConverter {
     System.out.print("5. kebab-case\n");
     System.out.print("6. Train-Case\n");   
     System.out.print("Which would you like, please enter a number.\n");
+    this.converterValue = this.scanner.nextInt();
   }
 
+
+  public void validateConversionInput (){
+    if(this.converterValue < 3){
+      // Call joined function
+    } if (this.converterValue > 2 && this.converterValue < 5){
+      // Call "_" joined function
+    } else {
+      // Call "-" joined function
+    }
+  }
   public static void main(String[] args) {
     TextConverter converter = new TextConverter();
     converter.initialiseAppGetTextInput();
