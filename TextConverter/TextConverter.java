@@ -1,11 +1,14 @@
 package TextConverter;
 import java.util.*;
+
+
 public class TextConverter {
   private String inputText;
   private String convertedText;
   private int converterValue;
   private Scanner scanner;
   private StringBuilder stringBuilder;
+
 
 
   public TextConverter(){
@@ -15,6 +18,8 @@ public class TextConverter {
     this.scanner = new Scanner(System.in);
     this.stringBuilder = new StringBuilder("");
   }
+
+
 
   public void initialiseAppGetTextInput(){
     System.out.print("Welcome to Sam's Text Converter\n");
@@ -31,6 +36,7 @@ public class TextConverter {
     System.out.print("Which would you like, please enter a number.\n");
     this.converterValue = this.scanner.nextInt();
   }
+
 
 
   public void validateConversionInput (){
@@ -59,68 +65,72 @@ public class TextConverter {
       System.out.print(this.convertedText);
   }
 
+
+
   public String convertCamelCase(){
     String[] textSplit = this.inputText.split(" ");
-
     this.stringBuilder.append(textSplit[0]);
     for(int i = 1; i<textSplit.length; i++){
       String currentWord = textSplit[i];
-      String currentWordCapitalised = Character.toUpperCase(currentWord.charAt(0)) + currentWord.substring(1);
-      this.stringBuilder.append(currentWordCapitalised);
+      this.stringBuilder.append(capitaliseWord(currentWord));
     }
     return this.stringBuilder.toString();
   }
+
+
 
   public String convertPascalCase(){
     String[] textSplit = this.inputText.split(" ");
-
     for(int i = 0; i<textSplit.length; i++){
       String currentWord = textSplit[i];
-      String currentWordCapitalised = Character.toUpperCase(currentWord.charAt(0)) + currentWord.substring(1);
-      this.stringBuilder.append(currentWordCapitalised);
+      this.stringBuilder.append(capitaliseWord(currentWord));
     }
     return this.stringBuilder.toString();
   }
+
+
 
   public String convertSnakeCase(){
     String[] textSplit = this.inputText.split(" ");
-
     for(int i = 0; i<textSplit.length; i++){
-      String currentWord = textSplit[i];
-      String currentWordCapitalised = Character.toLowerCase(currentWord.charAt(0)) + currentWord.substring(1);
+      String currentWord = textSplit[i].toLowerCase();
       if(i < textSplit.length - 1){
-        currentWordCapitalised += "_";
+        currentWord += "_";
       }
-      this.stringBuilder.append(currentWordCapitalised);
+      this.stringBuilder.append(currentWord);
     }
     return this.stringBuilder.toString();
   }
+
+
 
   public String convertKebabCase(){
     String[] textSplit = this.inputText.split(" ");
     for(int i = 0; i<textSplit.length; i++){
-      String currentWord = textSplit[i];
-      String currentWordCapitalised = Character.toLowerCase(currentWord.charAt(0)) + currentWord.substring(1);
+      String currentWord = textSplit[i].toLowerCase();
       if(i < textSplit.length - 1){
-        currentWordCapitalised += "-";
+        currentWord += "-";
       }
-      this.stringBuilder.append(currentWordCapitalised);
+      this.stringBuilder.append(currentWord);
     }
     return this.stringBuilder.toString();
   }
 
+
+
   public String convertTrainCase(){
     String[] textSplit = this.inputText.split(" ");
     for(int i = 0; i<textSplit.length; i++){
-      String currentWord = textSplit[i];
-      String currentWordCapitalised = Character.toUpperCase(currentWord.charAt(0)) + currentWord.substring(1);
+      String currentWord = capitaliseWord(textSplit[i]);
       if(i < textSplit.length - 1){
-        currentWordCapitalised += "-";
+        currentWord += "-";
       }
-      this.stringBuilder.append(currentWordCapitalised);
+      this.stringBuilder.append(currentWord);
     }
     return this.stringBuilder.toString();
   }
+
+
 
   public String convertMemeCase(){
     
@@ -147,11 +157,22 @@ public class TextConverter {
       this.stringBuilder.append(memeCaseWord.toString());
 
         if (i < textSplit.length - 1) {
-          this.stringBuilder.append(" "); // Add a space between words
+          this.stringBuilder.append(" ");
       }
     }
     return this.stringBuilder.toString();
   }
+  
+
+
+  private String capitaliseWord(String word){
+    if (word.isEmpty()) {
+      return "";
+  }
+  return Character.toUpperCase(word.charAt(0)) + word.substring(1);
+}
+
+
 
   public static void main(String[] args) {
     TextConverter converter = new TextConverter();
