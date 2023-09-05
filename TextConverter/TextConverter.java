@@ -35,15 +35,31 @@ public class TextConverter {
 
   public void validateConversionInput (){
       switch(this.converterValue){
-        case 1: convertCamelCase();
+        case 1: this.convertedText = convertCamelCase();
         break;
         
-        case 2: convertPascalCase();
+        case 2: this.convertedText = convertPascalCase();
+        break;
+
+        case 3: this.convertedText = convertSnakeCase();
+        break;
+
+        case 4: this.convertedText = convertSnakeCase().toUpperCase();
+        break;
+
+        case 5: this.convertedText = convertKebabCase();
+        break;
+
+        case 6: this.convertedText = convertTrainCase();
+        break;
+
+        case 7: this.convertedText = convertMemeCase();
         break;
       }
+      System.out.print(this.convertedText);
   }
 
-  public void convertCamelCase(){
+  public String convertCamelCase(){
     String[] textSplit = this.inputText.split(" ");
 
     this.stringBuilder.append(textSplit[0]);
@@ -52,11 +68,10 @@ public class TextConverter {
       String currentWordCapitalised = Character.toUpperCase(currentWord.charAt(0)) + currentWord.substring(1);
       this.stringBuilder.append(currentWordCapitalised);
     }
-    this.convertedText = this.stringBuilder.toString();
-    System.out.print(this.convertedText);
+    return this.stringBuilder.toString();
   }
 
-  public void convertPascalCase(){
+  public String convertPascalCase(){
     String[] textSplit = this.inputText.split(" ");
 
     for(int i = 0; i<textSplit.length; i++){
@@ -64,11 +79,79 @@ public class TextConverter {
       String currentWordCapitalised = Character.toUpperCase(currentWord.charAt(0)) + currentWord.substring(1);
       this.stringBuilder.append(currentWordCapitalised);
     }
-    this.convertedText = this.stringBuilder.toString();
-    System.out.print(this.convertedText);
+    return this.stringBuilder.toString();
   }
 
+  public String convertSnakeCase(){
+    String[] textSplit = this.inputText.split(" ");
 
+    for(int i = 0; i<textSplit.length; i++){
+      String currentWord = textSplit[i];
+      String currentWordCapitalised = Character.toLowerCase(currentWord.charAt(0)) + currentWord.substring(1);
+      if(i < textSplit.length - 1){
+        currentWordCapitalised += "_";
+      }
+      this.stringBuilder.append(currentWordCapitalised);
+    }
+    return this.stringBuilder.toString();
+  }
+
+  public String convertKebabCase(){
+    String[] textSplit = this.inputText.split(" ");
+    for(int i = 0; i<textSplit.length; i++){
+      String currentWord = textSplit[i];
+      String currentWordCapitalised = Character.toLowerCase(currentWord.charAt(0)) + currentWord.substring(1);
+      if(i < textSplit.length - 1){
+        currentWordCapitalised += "-";
+      }
+      this.stringBuilder.append(currentWordCapitalised);
+    }
+    return this.stringBuilder.toString();
+  }
+
+  public String convertTrainCase(){
+    String[] textSplit = this.inputText.split(" ");
+    for(int i = 0; i<textSplit.length; i++){
+      String currentWord = textSplit[i];
+      String currentWordCapitalised = Character.toUpperCase(currentWord.charAt(0)) + currentWord.substring(1);
+      if(i < textSplit.length - 1){
+        currentWordCapitalised += "-";
+      }
+      this.stringBuilder.append(currentWordCapitalised);
+    }
+    return this.stringBuilder.toString();
+  }
+
+  public String convertMemeCase(){
+    
+    String[] textSplit = this.inputText.split(" ");
+    
+    for(int i = 0; i<textSplit.length; i++){
+      
+      String[] wordSplit = textSplit[i].split("");
+      StringBuilder memeCaseWord = new StringBuilder();
+
+      for(int j = 0; j<wordSplit.length; j++){
+        
+        int chance = (Math.random() <= 0.3) ? 1 : 2;
+        boolean upperTrue = j%chance != 0;
+        char character = wordSplit[j].charAt(0);
+
+          if (upperTrue) {
+            memeCaseWord.append(Character.toUpperCase(character));
+        } else {
+            memeCaseWord.append(Character.toLowerCase(character));
+        }
+      }
+
+      this.stringBuilder.append(memeCaseWord.toString());
+
+        if (i < textSplit.length - 1) {
+          this.stringBuilder.append(" "); // Add a space between words
+      }
+    }
+    return this.stringBuilder.toString();
+  }
 
   public static void main(String[] args) {
     TextConverter converter = new TextConverter();
